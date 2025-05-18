@@ -1,8 +1,8 @@
 import type WebSocket from 'ws';
-import { type Player } from './types/types-game';
+import { type Player } from '../types/types-game';
 
-import { MESSAGE_TYPES } from './messages-types';
-import { store } from './store';
+import { MESSAGE_TYPES } from '../messages-types';
+import { store } from '../store';
 
 export const regOk = (player: Player, id = 0) =>
   JSON.stringify({
@@ -67,6 +67,10 @@ export const updateWinners = (id = 0): string => {
     type: MESSAGE_TYPES.UPDATE_WINNERS,
     data: JSON.stringify(winnersData),
     id,
+  });
+
+  store.players.forEach((player) => {
+    player.ws?.send(message);
   });
 
   return message;
