@@ -31,7 +31,7 @@ export type Room = {
   creator: Player;
   roomId: number;
   roomUsers: Player[];
-  status: 'waiting' | 'full';
+  status: 'waiting' | 'full' | 'single';
   currentPlayer?: number | string;
   isAvailable: boolean;
 };
