@@ -130,6 +130,28 @@ export const attack = (
       });
     }
 
+    if (room.status === 'single') {
+      const humanPlayer = room.roomUsers.find((p) => p.ws);
+      const botPlayer = room.roomUsers.find((p) => !p.ws);
+
+      if (botPlayer && humanPlayer) {
+        if (room.currentPlayer === botPlayer.id) {
+          setTimeout(() => {
+            const randomAttackMessage = {
+              data: {
+                gameId: room.roomId,
+                indexPlayer: botPlayer.id,
+                x: 0,
+                y: 0,
+              },
+              id: 0,
+            };
+            randomAttack(botPlayer.ws, randomAttackMessage);
+          }, 1000);
+        }
+      }
+    }
+
     if (defender.ships.length === 0) {
       const winner = store.players.find((player) => player.id === attacker.id);
       if (winner) {
@@ -188,8 +210,16 @@ export const randomAttack = (
       );
     }
 
-    const x = Math.floor(Math.random() * 10);
-    const y = Math.floor(Math.random() * 10);
+    let x: number;
+    let y: number;
+    do {
+      x = Math.floor(Math.random() * 10);
+      y = Math.floor(Math.random() * 10);
+    } while (
+      room.roomUsers.some(
+        (p) => p.id !== indexPlayer && p.battlefield[y]?.[x] !== 'empty',
+      )
+    );
 
     const attackMessage = {
       data: {
