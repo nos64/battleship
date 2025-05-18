@@ -6,6 +6,7 @@ import { parseMessage } from './utils/utils';
 
 import { addShips, addUserToRoom, createRoom, registration } from './handlers';
 import { attack, randomAttack } from './attack-handlers';
+import { startSinglePlayerGame } from './single-play';
 
 dotenv.config();
 
@@ -66,6 +67,11 @@ wss.on('connection', (ws, req) => {
 
         case MESSAGE_TYPES.RANDOM_ATTACK:
           randomAttack(ws, message);
+
+          break;
+
+        case MESSAGE_TYPES.SINGLE_PLAY:
+          startSinglePlayerGame(ws);
 
           break;
       }

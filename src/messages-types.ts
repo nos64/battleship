@@ -11,4 +11,5 @@ export const MESSAGE_TYPES = {
   RANDOM_ATTACK: 'randomAttack',
   TURN: 'turn',
   FINISH: 'finish',
+  SINGLE_PLAY: 'single_play',
 } as const;

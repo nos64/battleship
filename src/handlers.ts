@@ -187,10 +187,14 @@ export const addShips = async (_ws: WebSocket, message: AddShips) => {
           }),
           id: message.id || 0,
         };
-        roomPlayer.ws?.send(JSON.stringify(startMessage));
+
+        roomPlayer.ws !== null
+          ? roomPlayer.ws?.send(JSON.stringify(startMessage))
+          : console.log('Start message to bot sended!');
       });
 
-      const firstPlayerIndex = Math.floor(Math.random() * 2);
+      const firstPlayerIndex =
+        room.status === 'single' ? 0 : Math.floor(Math.random() * 2);
       const firstPlayer = room.roomUsers[firstPlayerIndex];
 
       sendTurnMessage(

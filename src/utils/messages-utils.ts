@@ -90,7 +90,9 @@ export const sendTurnMessage = (
   };
 
   roomUsers.forEach((roomPlayer) => {
-    roomPlayer.ws.send(JSON.stringify(turnMessage));
+    roomPlayer.ws !== null
+      ? roomPlayer.ws.send(JSON.stringify(turnMessage))
+      : console.log('Bot message');
   });
 };
 
