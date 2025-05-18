@@ -1,12 +1,17 @@
 import { WebSocketServer } from 'ws';
 import * as dotenv from 'dotenv';
 
-import { MESSAGE_TYPES } from './messages-types';
-import { parseMessage } from './utils/utils';
+import { MESSAGE_TYPES } from './constants/messages-types';
+import { parseMessage } from './utils/game-utils';
 
-import { addShips, addUserToRoom, createRoom, registration } from './handlers';
-import { attack, randomAttack } from './attack-handlers';
-import { startSinglePlayerGame } from './single-play';
+import {
+  addShips,
+  addUserToRoom,
+  createRoom,
+  registration,
+} from './handlers/game';
+import { attack, randomAttack } from './handlers/attack';
+import { startSinglePlayerGame } from './handlers/single-play';
 
 dotenv.config();
 

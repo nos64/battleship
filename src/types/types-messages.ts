@@ -1,4 +1,4 @@
-import { MESSAGE_TYPES } from '../messages-types';
+import { MESSAGE_TYPES } from '../constants/messages-types';
 
 import type { Position, Ship } from './types-game';
 

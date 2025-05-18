@@ -1,4 +1,4 @@
-import { createBattlefield, setCell } from './utils';
+import { createBattlefield, setCell } from './game-utils';
 import type { Battlefield, Player, Ship } from '../types/types-game';
 
 const isShipCanBePlaced = (

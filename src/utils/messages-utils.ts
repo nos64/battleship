@@ -1,8 +1,8 @@
 import type WebSocket from 'ws';
 import { type Player } from '../types/types-game';
 
-import { MESSAGE_TYPES } from '../messages-types';
-import { store } from '../store';
+import { MESSAGE_TYPES } from '../constants/messages-types';
+import { store } from '../constants/store';
 
 export const regOk = (player: Player, id = 0) =>
   JSON.stringify({

@@ -1,16 +1,16 @@
-import type { Player, Room } from './types/types-game';
+import type { Player, Room } from '../types/types-game';
 import type WebSocket from 'ws';
 
-import { MESSAGE_TYPES } from './messages-types';
-import { store } from './store';
+import { MESSAGE_TYPES } from '../constants/messages-types';
+import { store } from '../constants/store';
 import {
   createRoomMessage,
   updateRoom,
   updateWinners,
-} from './utils/messages-utils';
-import { createBattlefield, generateId } from './utils/utils';
-import { placeBotShips } from './utils/single-play-utils';
-import { addUserToRoom } from './handlers';
+} from '../utils/messages-utils';
+import { createBattlefield, generateId } from '../utils/game-utils';
+import { placeBotShips } from '../utils/single-play-utils';
+import { addUserToRoom } from './game';
 
 export const startSinglePlayerGame = (ws: WebSocket) => {
   try {

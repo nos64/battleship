@@ -3,14 +3,14 @@ import type {
   AddShips,
   AddUserToRoom,
   LoginOrCreatePlayerRequest,
-} from './types/types-messages';
-import type { Player, Room } from './types/types-game';
+} from '../types/types-messages';
+import type { Player, Room } from '../types/types-game';
 
 import {
   createBattlefield,
   filPlayerBattlefield,
   generateId,
-} from './utils/utils';
+} from '../utils/game-utils';
 import {
   regError,
   regOk,
@@ -18,10 +18,10 @@ import {
   sendTurnMessage,
   updateRoom,
   updateWinners,
-} from './utils/messages-utils';
+} from '../utils/messages-utils';
 
-import { MESSAGE_TYPES } from './messages-types';
-import { store } from './store';
+import { MESSAGE_TYPES } from '../constants/messages-types';
+import { store } from '../constants/store';
 
 export const registration = (
   ws: WebSocket,

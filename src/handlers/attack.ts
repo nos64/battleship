@@ -1,21 +1,21 @@
 import type WebSocket from 'ws';
 
-import type { AttackData, AttackFeedbackStatus } from './types/types-messages';
+import type { AttackData, AttackFeedbackStatus } from '../types/types-messages';
 import {
   sendToRoomMessage,
   updateRoom,
   updateWinners,
-} from './utils/messages-utils';
+} from '../utils/messages-utils';
 import {
   checkIfShipDestroyed,
   createBattlefield,
   getSurroundingCells,
   markAroundDestroyedShip,
   setCell,
-} from './utils/utils';
+} from '../utils/game-utils';
 
-import { MESSAGE_TYPES } from './messages-types';
-import { store } from './store';
+import { MESSAGE_TYPES } from '../constants/messages-types';
+import { store } from '../constants/store';
 
 export const attack = (
   ws: WebSocket,
