@@ -1,5 +1,8 @@
 import { WebSocketServer } from 'ws';
 import * as dotenv from 'dotenv';
+import os from 'os';
+
+import { httpServer } from './http_server';
 
 import { MESSAGE_TYPES } from './constants/messages-types';
 import { parseMessage } from './utils/game-utils';
@@ -15,7 +18,12 @@ import { startSinglePlayerGame } from './handlers/single-play';
 
 dotenv.config();
 
+const HTTP_PORT = 8181;
+
 const PORT = Number(process.env.PORT) || 3000;
+
+console.log(`Start static http server on the ${HTTP_PORT} port!`);
+const server = httpServer.listen(HTTP_PORT);
 
 const wss = new WebSocketServer({ port: PORT });
 
@@ -101,5 +109,9 @@ process.on('SIGINT', () => {
   wss.clients.forEach((client) => client.close());
   wss.close();
   console.log('Server stopped');
+
+  server.close(() => {
+    console.log(`${os.EOL}Server closed`);
+  });
   process.exit();
 });
